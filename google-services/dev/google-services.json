@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "987427771673",
+    "firebase_url": "https://reksti-6bdec-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "reksti-6bdec",
+    "storage_bucket": "reksti-6bdec.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:987427771673:android:1ad4421c72232391fce188",
+        "android_client_info": {
+          "package_name": "com.RekSTI.DormMonitoring"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCkEes0EEByOyBS9LWKPQ8yFlr6g6gMcc8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

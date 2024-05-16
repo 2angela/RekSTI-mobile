@@ -1,14 +1,40 @@
 import { ScrollView, Text, View, StyleSheet } from "react-native";
+import firestore from "@react-native-firebase/firestore";
 import NavigationBar from "./components/navigationbar";
 import { TouchableOpacity } from "react-native";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { TextInput } from "react-native-paper";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function SetLimit({ navigation }) {
   const [temp, setTemp] = useState();
   const [noise, setNoise] = useState();
+  const [penghuni, setPenghuni] = useState();
   const [isSelected, setIsSelected] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const querySnapshot = await firestore()
+          .collection("Penghuni")
+          .doc("OfJiSr6rtYbbHEfNMgVQFgZrSrv2")
+          .get();
+        const data = querySnapshot.data();
+        if (!data) {
+          console.log("Error data is not found");
+          console.log("penghuni kamar: ", penghuni);
+        } else {
+          setPenghuni(data.kamar);
+          console.log("penghuni kamar: ", penghuni);
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        console.log("Data:", data);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <View style={styles.frame}>
@@ -34,7 +60,7 @@ export default function SetLimit({ navigation }) {
                   isChecked={isSelected}
                   onPress={(e) => setIsSelected(e)}
                 />
-                <Text style={styles.text}>Semua Kamar</Text>
+                <Text style={styles.text}>Kamar {penghuni}</Text>
               </View>
             </ScrollView>
           </View>
@@ -78,7 +104,7 @@ export default function SetLimit({ navigation }) {
                   isChecked={isSelected}
                   onPress={(e) => setIsSelected(e)}
                 />
-                <Text style={styles.text}>Semua Kamar</Text>
+                <Text style={styles.text}>Kamar {penghuni}</Text>
               </View>
             </ScrollView>
           </View>
@@ -140,7 +166,7 @@ const styles = StyleSheet.create({
     elevation: 4,
     shadowColor: "black",
     shadowOpacity: "0.25",
-    shadowOffset: { width: 0, height: 4 },
+    shadowOffset: { width: -2, height: 4 },
     shadowRadius: 10,
   },
   kamarBox: {
